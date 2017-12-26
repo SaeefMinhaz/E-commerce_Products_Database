@@ -69,5 +69,31 @@ public class ProductDBSource {
         return products;
     }
 
+    public boolean updateProduct(Product product, int rowId){
+        this.open();
+        ContentValues values = new ContentValues();
+        values.put(ProductsDBHelper.COL_NAME,product.getProductName());
+        values.put(ProductsDBHelper.COL_DESCRIPTION,product.getProductDescription());
+        values.put(ProductsDBHelper.COL_PRICE,product.getProductPrice());
+        int updatedId =  sqLiteDatabase.update(ProductsDBHelper.TABLE_PRODUCT, values,ProductsDBHelper.COL_ID+" =?",
+                new String[]{String.valueOf(rowId)});
+        if (updatedId >0){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public boolean deleteProduct(int rowId){
+        this.open();
+        int deletedId = sqLiteDatabase.delete(ProductsDBHelper.TABLE_PRODUCT,productsDBHelper.COL_ID+" =? ",new String[]{String.valueOf(rowId)});
+        this.close();
+        if (deletedId> 0){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
 
 }

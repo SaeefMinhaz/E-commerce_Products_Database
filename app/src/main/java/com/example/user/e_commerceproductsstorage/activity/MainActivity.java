@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -16,8 +17,15 @@ public class MainActivity extends AppCompatActivity {
     private EditText productNameET;
     private EditText productPriceET;
     private EditText productDescriptionET;
+    private Button addBtn;
     private Product product;
     private ProductDBSource productDBSource;
+
+    private int rowId;
+    private String updateProductName;
+    private String updateProductDescription;
+    private String updateProductPrice;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +35,24 @@ public class MainActivity extends AppCompatActivity {
         productNameET = findViewById(R.id.productNameET);
         productPriceET = findViewById(R.id.productPriceET);
         productDescriptionET = findViewById(R.id.productDescriptionET);
+        addBtn = findViewById(R.id.addBtn);
 
         productDBSource = new ProductDBSource(this);
+
+        //intent from ProductDetailsActivity
+        rowId = getIntent().getIntExtra("id",0);
+        updateProductName = getIntent().getStringExtra("name");
+        updateProductDescription = getIntent().getStringExtra("details");
+        updateProductPrice = getIntent().getStringExtra("price");
+
+        productNameET.setText(updateProductName);
+        productDescriptionET.setText(updateProductDescription);
+        productPriceET.setText(updateProductPrice);
+        if (rowId >0){
+            addBtn.setText("Update Product");
+        }
+
+
     }
 
     public void addProduct(View view) {
@@ -42,14 +66,29 @@ public class MainActivity extends AppCompatActivity {
         } else if(price.isEmpty()){
             productPriceET.setError("input data");
         }else {
-            product = new Product(name, details, price);
-            boolean status = productDBSource.addProduct(product);
-            if (status){
-                Toast.makeText(this,"Congrates!!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(MainActivity.this,ProductListActivity.class));
+
+            // Checking rowId for update product or add product
+            if (rowId >0){
+                product = new Product(rowId,name, details,price);
+                boolean status = productDBSource.updateProduct(product, rowId);
+                if (status){
+                    Toast.makeText(this,"updated!!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(MainActivity.this, ProductListActivity.class));
+                }else {
+                    Toast.makeText(this,"not updated", Toast.LENGTH_SHORT).show();
+                }
+
             }else {
-                Toast.makeText(this,"you did a mistake", Toast.LENGTH_SHORT).show();
+                product = new Product(name, details, price);
+                boolean status = productDBSource.addProduct(product);
+                if (status){
+                    Toast.makeText(this,"Congrates!!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(MainActivity.this,ProductListActivity.class));
+                }else {
+                    Toast.makeText(this,"you did a mistake", Toast.LENGTH_SHORT).show();
+                }
             }
+
         }
     }
 

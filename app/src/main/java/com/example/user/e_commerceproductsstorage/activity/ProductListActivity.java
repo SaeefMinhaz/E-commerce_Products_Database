@@ -36,11 +36,13 @@ public class ProductListActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                int rowId = products.get(position).getProductID();
                 String name = products.get(position).getProductName();
                 String details = products.get(position).getProductDescription();
                 String price = products.get(position).getProductPrice();
 
                 startActivity(new Intent(ProductListActivity.this, ProductDetailsActivity.class)
+                        .putExtra("id", rowId)
                         .putExtra("name",name)
                         .putExtra("details", details)
                         .putExtra("price", price));
