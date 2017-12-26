@@ -31,4 +31,10 @@
         android:layout_height="wrap_content"
         android:onClick="addProduct"/>
 
+    <Button
+        android:text="Show Products"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="showAllProducts"/>
+
 </LinearLayout>

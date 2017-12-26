@@ -1,7 +1,10 @@
 package com.example.user.e_commerceproductsstorage.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.user.e_commerceproductsstorage.Adapter.ProductAdapter;
@@ -29,5 +32,19 @@ public class ProductListActivity extends AppCompatActivity {
 
         productAdapter = new ProductAdapter(this,products);
         listView.setAdapter(productAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String name = products.get(position).getProductName();
+                String details = products.get(position).getProductDescription();
+                String price = products.get(position).getProductPrice();
+
+                startActivity(new Intent(ProductListActivity.this, ProductDetailsActivity.class)
+                        .putExtra("name",name)
+                        .putExtra("details", details)
+                        .putExtra("price", price));
+            }
+        });
     }
 }

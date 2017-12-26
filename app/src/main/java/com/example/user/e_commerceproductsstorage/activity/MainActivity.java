@@ -52,4 +52,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+    public void showAllProducts(View view) {
+        startActivity(new Intent(MainActivity.this,ProductListActivity.class));
+    }
 }
