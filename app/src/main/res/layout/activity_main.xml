@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.user.e_commerceproductsstorage.activity.MainActivity">
+
+    <EditText
+        android:id="@+id/productNameET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Product Name"/>
+
+    <EditText
+        android:id="@+id/productDescriptionET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Product Description"/>
+
+    <EditText
+        android:id="@+id/productPriceET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Product Price"/>
+
+    <Button
+        android:text="Add New Product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="addProduct"/>
+
+</LinearLayout>
