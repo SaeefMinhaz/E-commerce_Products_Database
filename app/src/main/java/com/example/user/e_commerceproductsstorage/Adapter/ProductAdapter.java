@@ -4,12 +4,14 @@ import android.content.Context;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.user.e_commerceproductsstorage.R;
 import com.example.user.e_commerceproductsstorage.model.Product;
@@ -34,6 +36,7 @@ public class ProductAdapter extends ArrayAdapter<Product>{
     class ViewHolder{
         TextView productNameTV;
         ImageView productImageIV;
+        TextView productShowPriceTV;
     }
 
     @NonNull
@@ -47,13 +50,15 @@ public class ProductAdapter extends ArrayAdapter<Product>{
             holder = new ViewHolder();
             convertView = inflater.inflate(R.layout.row_layout,parent, false);
             holder.productImageIV = (ImageView) convertView.findViewById(R.id.productImageIV);
-            holder.productNameTV = convertView.findViewById(R.id.productNameTV);
+            holder.productNameTV = (TextView) convertView.findViewById(R.id.productNameTV);
+            holder.productShowPriceTV = (TextView) convertView.findViewById(R.id.productShowPriceTV);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        holder.productNameTV.setText(products.get(position).getProductName());
+        holder.productNameTV.setText(products.get(position).getProductName().toString());
+        holder.productShowPriceTV.setText(products.get(position).getProductPrice().toString());
 
         return convertView;
     }

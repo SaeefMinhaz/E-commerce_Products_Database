@@ -1,52 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
+    android:layout_margin="10dp"
     tools:context="com.example.user.e_commerceproductsstorage.activity.ProductDetailsActivity">
+
+
+    <ImageView
+        android:id="@+id/details_productImageIV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher"/>
 
     <TextView
         android:id="@+id/details_productNameTV"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:gravity="center"
-        android:textSize="20sp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/details_productImageIV"
+        android:textSize="24sp"
+        android:textColor="@color/cardview_dark_background"
         android:text="sample text"/>
 
     <TextView
         android:id="@+id/details_productDesTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:text="sample text"/>
+        android:layout_below="@+id/details_productPriceTV"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:textColor="@color/cardview_dark_background"
+        android:text="sample description"/>
 
     <TextView
         android:id="@+id/details_productPriceTV"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:text="sample text"/>
+        android:layout_below="@id/details_productNameTV"
+        android:layout_toRightOf="@id/details_productImageIV"
+        android:layout_marginLeft="10dp"
+        android:textSize="16sp"
+        android:text="sample price"/>
 
     <Button
-        android:layout_width="match_parent"
+        android:id="@+id/details_productUpdateBtn"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/details_productDesTV"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="90dp"
         android:text="Update"
         android:onClick="updateProduct"/>
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/details_productDesTV"
+        android:layout_toRightOf="@id/details_productUpdateBtn"
+        android:layout_marginTop="25dp"
         android:text="Delete"
         android:onClick="deleteProduct"/>
 
 
 
-</LinearLayout>
+</RelativeLayout>

@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 }else {
                     Toast.makeText(this,"not updated", Toast.LENGTH_SHORT).show();
                 }
-
+            //add product
             }else {
                 product = new Product(name, details, price);
                 boolean status = productDBSource.addProduct(product);

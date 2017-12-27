@@ -82,10 +82,4 @@ public class Product implements Serializable{
         this.productPrice = productPrice;
     }
 
-//    public ArrayList<Product> getAllProducts(){
-//        ArrayList<Product> products = new ArrayList<>();
-////        products.add(new Product()); add new product
-//
-//        return products;
-//    }
 }
